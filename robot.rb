@@ -1,8 +1,8 @@
 class Robot
 	
 	def initialize(x,y,orientation)
-		@x = x
-		@y = y
+		@x = x.to_i
+		@y = y.to_i
 		@orientations = {
 			"N"=>0,
 			"E"=>1,
@@ -17,6 +17,11 @@ class Robot
 	def getPos
 		puts "X: "+@x.to_s
 		puts "Y: "+@y.to_s
+	end
+
+	def shout
+		puts "I am a robot at X: "+@x.to_s+" Y: "+@y.to_s+" Facing: "+@orientation.to_s+"	"+@status.to_s
+	
 	end
 
 	def turn direction
@@ -35,18 +40,24 @@ class Robot
 
 
 	def getForwardPos
+		new_pos = nil
 		case @orientations.key(@orientation.to_i)
 		when 'N'
-			return [@x.to_i,@y.to_i + 1]
+			puts 'NORTH'
+			new_pos =  [@x.to_i, @y.to_i + 1]
 		when 'E'
-			return [@x.to_i + 1,@y.to_i]
+			puts 'EAST'
+			new_pos =  [@x.to_i + 1,@y.to_i]
 		when 'S'
-			return [@x.to_i + 1,@y.to_i - 1]
+			puts 'SOUTH'
+			new_pos =  [@x.to_i,@y.to_i - 1]
 		when 'W'
-			return [@x.to_i - 1,@y.to_i]
+			puts 'WEST'
+			new_pos =  [@x.to_i - 1,@y.to_i]
 		else
-			puts 'There was a problem'
+			new_pos =  'There was a problem'
 		end
+		return new_pos
 	end
 
 	def setStatus status
@@ -55,6 +66,7 @@ class Robot
 
 	def goForward
 		newPos = getForwardPos
+		puts "Moving from forward "+@orientations.key(@orientation.to_i).to_s+@x.to_s+","+@y.to_s+" to "+newPos[0].to_s+","+newPos[1].to_s
 		@x = newPos[0]
 		@y = newPos[1]
 	end

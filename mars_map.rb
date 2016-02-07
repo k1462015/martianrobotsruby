@@ -11,7 +11,30 @@ class MarsMap
 		puts "Y: "+@y_max.to_s
 	end
 
-	def addRobot(robot)
+	def addRobot(robot,commands)
+		scents_to_add = []
+		commands.each do |command|
+			if command == 'R' || command == 'L'
+				then robot.turn(command)
+			else
+				# Check if forward pos in scent pos
+				forward_pos = robot.getForwardPos
+				unless isScentPosition(forward_pos[0],forward_pos[1])
+					if isOffPos(forward_pos[0],forward_pos[1]) then
+						puts "Is scent position: "+forward_pos[0].to_s+forward_pos[1].to_s
+						scents_to_add << [forward_pos[0],forward_pos[1]]
+						robot.setStatus('LOST')
+					end
+					robot.goForward
+				end
+			end
+		end
+
+		scents_to_add.each do |scent|
+			addScentPos(scent[0],scent[1])
+		end
+
+		puts "Adding Robot"
 		@robots << robot
 	end
 
@@ -31,6 +54,12 @@ class MarsMap
 			return true
 		else
 			return false
+		end
+	end
+
+	def allRobots
+		@robots.each do |r|
+			r.shout
 		end
 	end
 end

@@ -6,7 +6,7 @@ puts "Mission Martian Robots. Please enter \"finish\" once you are ready to laun
 userCommands = []
 
 while (input = gets.chomp) != 'finish' do
-	userCommands << input
+	userCommands << input if input != ''
 end
 
 # First line of input should be map coordinate
@@ -27,10 +27,21 @@ puts "In scent pos" if marsmap.isScentPosition(2,4)
 
 puts marsmap.putSize
 
+i = 1
+while i < userCommands.length do
+	robot_pos = userCommands[i].split(' ')
+	robot = Robot.new(robot_pos[0],robot_pos[1],robot_pos[2])
+	instructions = userCommands[i + 1].split('')
+	marsmap.addRobot(robot,instructions)
+	i += 2
+end
+marsmap.allRobots
+
+
 
 # Now Process Robot position and commands
-robot = Robot.new(1,1,'N')
-robot.goForward
-robot.getPos
-puts "Turning left from N"
-robot.turn('l')
+# robot = Robot.new(1,1,'N')
+# robot.goForward
+# robot.getPos
+# puts "Turning left from N"
+# robot.turn('l')
