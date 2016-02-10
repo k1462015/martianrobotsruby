@@ -44,8 +44,9 @@ class Robot
 
 	# Executes a forward move
 	def move_forward
-		@x = forward_position[0]
-		@y = forward_position[1]
+		new_position = forward_position
+		@x = new_position[0]
+		@y = new_position[1]
 	end
 
 end
