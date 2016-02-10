@@ -1,74 +1,48 @@
 class Robot
-	
+	attr_accessor :status
+
 	def initialize(x,y,orientation)
 		@x = x.to_i
 		@y = y.to_i
-		@orientations = {
-			"N"=>0,
-			"E"=>1,
-			"S"=>2,
-			"W"=>3
-		}
+		@orientations = {"N"=>0,"E"=>1,"S"=>2,"W"=>3}
 		@orientation = @orientations[orientation.to_s]
-		@status = 'Alive'
 	end
 
-
-	def getPos
-		puts "X: "+@x.to_s
-		puts "Y: "+@y.to_s
-	end
-
+	# Puts Robots current position and status
 	def shout
-		puts "I am a robot at X: "+@x.to_s+" Y: "+@y.to_s+" Facing: "+@orientation.to_s+"	"+@status.to_s
-	
+		puts @x.to_s+" "+@y.to_s+" "+@orientations.key(@orientation.to_i)+"	"+@status.to_s
 	end
 
-	def turn direction
-		puts "Current Direction: "+@orientations.key(@orientation.to_i)
-		case direction.downcase
-		when 'r'
+	# Executes a turn instruction in given direction
+	def turn(direction)
+		case direction.upcase
+		when 'R'
 			@orientation = (@orientation + 1) % 4
-		when 'l'
+		when 'L'
 			@orientation = (@orientation - 1) % 4
-			if @orientation < 0 then 
-				@orientation = 3 
-			end
 		end
-		puts "New Direction: "+@orientations.key(@orientation.to_i)
 	end
 
-
-	def getForwardPos
-		new_pos = nil
+	# Calculates position if robot moves forward
+	def forward_position
 		case @orientations.key(@orientation.to_i)
 		when 'N'
-			puts 'NORTH'
-			new_pos =  [@x.to_i, @y.to_i + 1]
+			return  [@x.to_i, @y.to_i + 1]
 		when 'E'
-			puts 'EAST'
-			new_pos =  [@x.to_i + 1,@y.to_i]
+			return  [@x.to_i + 1,@y.to_i]
 		when 'S'
-			puts 'SOUTH'
-			new_pos =  [@x.to_i,@y.to_i - 1]
+			return  [@x.to_i,@y.to_i - 1]
 		when 'W'
-			puts 'WEST'
-			new_pos =  [@x.to_i - 1,@y.to_i]
+			return  [@x.to_i - 1,@y.to_i]
 		else
-			new_pos =  'There was a problem'
+			return  'There was a problem'
 		end
-		return new_pos
 	end
 
-	def setStatus status
-		@status = status
-	end
-
-	def goForward
-		newPos = getForwardPos
-		puts "Moving from forward "+@orientations.key(@orientation.to_i).to_s+@x.to_s+","+@y.to_s+" to "+newPos[0].to_s+","+newPos[1].to_s
-		@x = newPos[0]
-		@y = newPos[1]
+	# Executes a forward move
+	def move_forward
+		@x = forward_position[0]
+		@y = forward_position[1]
 	end
 
 end
