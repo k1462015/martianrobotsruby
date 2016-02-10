@@ -16,7 +16,7 @@ class MarsMap
 	  	# If instruction is a turn instruction
 	    if instruction == 'R' || instruction == 'L'
 	    	robot.turn(instruction)
-	    else
+	    elsif instruction == 'F'
 	    	# If instruction is a forward instruction
 	    	forward_position = robot.forward_position
 
