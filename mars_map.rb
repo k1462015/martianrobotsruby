@@ -1,4 +1,5 @@
 class MarsMap
+	attr_accessor :scent_positions
 
 	def initialize(x_max,y_max)
 	  @x_max = x_max.to_i
@@ -18,35 +19,40 @@ class MarsMap
 	    else
 	    	# If instruction is a forward instruction
 	    	forward_position = robot.forward_position
-	    	# Check if future position is a scent position
-	    	# If not scent position, execute forward move, else ignore
-	    	unless is_scent_position(forward_position[0],forward_position[1])
-	    		# If new position off map, add to scent positions
-	    		if is_off_map(forward_position[0],forward_position[1])
-	    			scents_to_add << [forward_position[0],forward_position[1]]
-	    			robot.status = 'LOST'
-	    		end
-	    		robot.move_forward
-	    	end
+
+	    	# Check if next forward position is off map/grid
+	    	if is_off_map? forward_position[0],forward_position[1]
+	    		# If current position is a scent position
+	    		# Then ignore to move forward
+	    		unless is_scent_position? robot.x,robot.y
+	    			# Since next position is not a scent position
+	    			# Robot is now lost
+    				scents_to_add << [robot.x,robot.y]
+    				robot.move_forward
+    				robot.status = 'LOST'
+    			end
+    		else
+    			robot.move_forward
+    		end
 	    end
 	  end
 
-	  # Adds any new scent position, to scent positions
+	  # Adds new scent position, to scent positions
 	  scents_to_add.each do |scent|
 	    @scent_positions << [scent[0].to_i,scent[1].to_i]
 	  end
 
       @robots << robot
-
+      return robot
 	end
 
 	# Checks if X,Y coordinate is a scent position
-	def is_scent_position(x,y)
+	def is_scent_position?(x,y)
       @scent_positions.include? [x.to_i,y.to_i]
 	end	
 
 	# Checks if X,Y coordinate is off the map
-	def is_off_map(x,y)
+	def is_off_map?(x,y)
       x = x.to_i
       y = y.to_i
 

@@ -1,6 +1,9 @@
 class Robot
 	attr_accessor :status
-
+	attr_accessor :orientation
+	attr_accessor :x
+	attr_accessor :y
+	
 	def initialize(x,y,orientation)
 		@x = x.to_i
 		@y = y.to_i

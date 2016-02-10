@@ -3,11 +3,11 @@ require_relative 'robot'
 
 # First collect user input
 puts "Mission Martian Robots. Please enter \"finish\" once you are ready to launch!"
-# userCommands = ["5 3","1 1 E","RFRFRFRF","3 2 N","FRRFLLFFRRFLL","0 3 W","LLFFFLFLFL"]
-userCommands = []
-while (input = gets.chomp) != 'finish' do
-	userCommands << input.upcase if input != ''
-end
+userCommands = ["5 3","1 1 E","RFRFRFRF","3 2 N","FRRFLLFFRRFLL","0 3 W","LLFFFLFLFL"]
+# userCommands = []
+# while (input = gets.chomp) != 'finish' do
+# 	userCommands << input.upcase if input != ''
+# end
 
 # First line of input should be map coordinate
 x_max = userCommands[0].split(' ')[0]
