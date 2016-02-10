@@ -4,7 +4,6 @@ Coding challenge set by Red Badger.
 ### Requirements? ###
 
 * Ruby (Version 2.2.1 was used in development)
-* Access to CMD/Terminal
 
 ### How do I get set up? ###
 
