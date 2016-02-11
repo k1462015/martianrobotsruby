@@ -6,13 +6,13 @@ class TestMarsMap < Test::Unit::TestCase
 	# Tests whether coordinate is off map
 	def test_off_map
 		mars_map = MarsMap.new(5,3)
-		assert_equal(true,mars_map.is_off_map(5,4))
+		assert_equal(true,mars_map.is_off_map?(5,4))
 	end
 
 	# Tests whether coordinate is in the map
 	def test_in_map
 		mars_map = MarsMap.new(5,3)
-		assert_equal(false,mars_map.is_off_map(1,2))
+		assert_equal(false,mars_map.is_off_map?(1,2))
 	end
 
 	# Test if instruction to move

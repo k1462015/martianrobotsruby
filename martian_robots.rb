@@ -22,6 +22,7 @@ while i < user_commands.length do
   robot_pos = user_commands[i].split(' ')
   robot = Robot.new(robot_pos[0],robot_pos[1],robot_pos[2])
   # Extract instructions from next line
+  # Also remove any white space
   instructions = user_commands[i + 1].delete(' ').split('')
   # Add to MarsMap, which also executes instructions
   marsmap.add_robot(robot,instructions)
