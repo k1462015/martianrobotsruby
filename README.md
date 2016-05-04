@@ -1,5 +1,7 @@
 # Red Badger #
-Developer Programming Problem
+Developer Programming Problem. 
+
+[Click here to download coding challenge PDF.](https://github.com/k1462015/martianrobotsruby/raw/master/CodingChallenge2015v2.__1_.pdf)
 
 ### Requirements ###
 
