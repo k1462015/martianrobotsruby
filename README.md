@@ -1,7 +1,7 @@
-# Red Badger Developer Programming Problem #
-Coding challenge set by Red Badger.
+# Red Badger #
+Developer Programming Problem
 
-### Requirements? ###
+### Requirements ###
 
 * Ruby (Version 2.2.1 was used in development)
 
@@ -13,8 +13,8 @@ Coding challenge set by Red Badger.
 
 ### To run tests ###
 * Go to /tests directory
-* run - ruby test_robot.rb
-* run - ruby test_mars_map.rb
+* run `ruby test_robot.rb`
+* run `ruby test_mars_map.rb`
 
 ## Instructions ##
 * First line of input MUST be the upper-right coordinates of the rectangular world (E.G. 5,3)
